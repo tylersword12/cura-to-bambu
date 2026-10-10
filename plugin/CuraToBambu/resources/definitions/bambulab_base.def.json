@@ -1,0 +1,300 @@
+{
+    "version": 2,
+    "name": "Bambu Lab Base",
+    "inherits": "fdmprinter",
+    "metadata": {
+        "visible": false,
+        "author": "Cura-to-Bambu plugin (unofficial)",
+        "manufacturer": "Bambu Lab",
+        "file_formats": "application/x-bambu-gcode-3mf;text/x-gcode",
+        "has_materials": true,
+        "has_machine_quality": true,
+        "quality_definition": "bambulab_base",
+        "preferred_quality_type": "standard",
+        "preferred_material": "generic_pla_175",
+        "machine_extruder_trains": {
+            "0": "bambulab_extruder_0"
+        },
+        "supports_usb_connection": false
+    },
+    "settings": {
+        "bambu_lab": {
+            "label": "Bambu Lab",
+            "type": "category",
+            "icon": "Printer",
+            "description": "Settings used when the Cura-to-Bambu plugin builds the Bambu Lab print file.",
+            "children": {
+                "bbl_plate_type": {
+                    "label": "Build Plate Type",
+                    "description": "The build plate on the printer. It is written into the print file (the printer and Bambu Connect check it) and the Textured PEI plate gets Bambu's -0.04 mm Z-offset. Set the bed temperature for this plate in the material settings.",
+                    "type": "enum",
+                    "options": {
+                        "textured_pei": "Textured PEI Plate",
+                        "cool_plate": "Cool Plate (Smooth PEI)",
+                        "engineering_plate": "Engineering Plate",
+                        "high_temp_plate": "High Temp Plate",
+                        "supertack_plate": "Cool Plate SuperTack"
+                    },
+                    "default_value": "textured_pei",
+                    "settable_per_mesh": false,
+                    "settable_per_extruder": false,
+                    "settable_per_meshgroup": false
+                },
+                "bbl_max_volumetric_speed": {
+                    "label": "Max Volumetric Speed",
+                    "description": "Highest melt rate the hotend may be asked for, in mm\u00b3/s. Every extrusion move that would go faster is slowed down in the exported file, like Bambu Studio does. 0 = automatic: Bambu's generic value for the filament type (PLA/PETG 12, ABS 16, ASA 12, PC 16, TPU 3.2). Bambu PLA Basic handles about 21. This also sets the default print speeds.",
+                    "unit": "mm\u00b3/s",
+                    "type": "float",
+                    "default_value": 0,
+                    "minimum_value": "0",
+                    "maximum_value_warning": "35",
+                    "settable_per_mesh": false,
+                    "settable_per_extruder": false,
+                    "settable_per_meshgroup": false
+                },
+                "bbl_timelapse": {
+                    "label": "Timelapse Snapshots",
+                    "description": "Add Bambu's timelapse snapshot command at every layer change. The printer only records a timelapse if you also turn timelapse on when starting the print.",
+                    "type": "bool",
+                    "default_value": true,
+                    "settable_per_mesh": false,
+                    "settable_per_extruder": false,
+                    "settable_per_meshgroup": false
+                }
+            }
+        }
+    },
+    "overrides": {
+        "machine_name": {
+            "default_value": "Bambu Lab printer"
+        },
+        "machine_width": {
+            "default_value": 256.0
+        },
+        "machine_depth": {
+            "default_value": 256.0
+        },
+        "machine_height": {
+            "default_value": 250.0
+        },
+        "machine_heated_bed": {
+            "default_value": true
+        },
+        "machine_center_is_zero": {
+            "default_value": false
+        },
+        "machine_gcode_flavor": {
+            "default_value": "RepRap (Marlin/Sprinter)"
+        },
+        "machine_start_gcode": {
+            "default_value": ";BBL_START_GCODE_BEGIN\n; Placeholder. When you export with the Cura-to-Bambu plugin (\"Send to Bambu Connect\" or saving a\n; .gcode.3mf), this block is replaced by Bambu Lab's own start sequence for the printer and nozzle:\n; AMS filament load, nozzle wipe, first-layer-area bed levelling, (X1) flow calibration, purge line.\n; Keep the BEGIN/END marker lines. The commands below only run if you print a plain .gcode export.\nM140 S{material_bed_temperature_layer_0}\nM104 S{material_print_temperature_layer_0}\nG28\nM190 S{material_bed_temperature_layer_0}\nM109 S{material_print_temperature_layer_0}\nG90\nM83\n;BBL_START_GCODE_END\n"
+        },
+        "machine_end_gcode": {
+            "default_value": ";BBL_END_GCODE_BEGIN\n; Placeholder. Replaced by Bambu Lab's end sequence (unload filament to AMS, park, cool down) on export.\nM400\nM104 S0\nM140 S0\nM106 S0\nG91\nG1 Z5 F600\nG90\n;BBL_END_GCODE_END\n"
+        },
+        "machine_disallowed_areas": {
+            "default_value": [
+                [
+                    [
+                        -128.0,
+                        128.0
+                    ],
+                    [
+                        -110.0,
+                        128.0
+                    ],
+                    [
+                        -110.0,
+                        100.0
+                    ],
+                    [
+                        -128.0,
+                        100.0
+                    ]
+                ]
+            ]
+        },
+        "machine_head_with_fans_polygon": {
+            "default_value": [
+                [
+                    -57.0,
+                    57.0
+                ],
+                [
+                    57.0,
+                    57.0
+                ],
+                [
+                    57.0,
+                    -57.0
+                ],
+                [
+                    -57.0,
+                    -57.0
+                ]
+            ]
+        },
+        "gantry_height": {
+            "value": "34"
+        },
+        "machine_max_feedrate_x": {
+            "default_value": 500.0
+        },
+        "machine_max_feedrate_y": {
+            "default_value": 500.0
+        },
+        "machine_max_feedrate_z": {
+            "default_value": 20.0
+        },
+        "machine_max_feedrate_e": {
+            "default_value": 30.0
+        },
+        "machine_max_acceleration_x": {
+            "default_value": 20000.0
+        },
+        "machine_max_acceleration_y": {
+            "default_value": 20000.0
+        },
+        "machine_max_acceleration_z": {
+            "default_value": 500.0
+        },
+        "machine_max_acceleration_e": {
+            "default_value": 5000.0
+        },
+        "machine_acceleration": {
+            "default_value": 10000
+        },
+        "machine_max_jerk_xy": {
+            "default_value": 9.0
+        },
+        "machine_max_jerk_z": {
+            "default_value": 3.0
+        },
+        "machine_max_jerk_e": {
+            "default_value": 2.5
+        },
+        "machine_nozzle_heat_up_speed": {
+            "default_value": 2.0
+        },
+        "machine_nozzle_cool_down_speed": {
+            "default_value": 2.0
+        },
+        "relative_extrusion": {
+            "default_value": true,
+            "value": "True"
+        },
+        "material_bed_temp_prepend": {
+            "default_value": false
+        },
+        "material_print_temp_prepend": {
+            "default_value": false
+        },
+        "layer_height_0": {
+            "value": "max(0.2, layer_height)"
+        },
+        "retraction_amount": {
+            "default_value": 0.8
+        },
+        "retraction_speed": {
+            "default_value": 30.0,
+            "maximum_value_warning": "70"
+        },
+        "retraction_hop_enabled": {
+            "default_value": true
+        },
+        "retraction_hop": {
+            "default_value": 0.4
+        },
+        "retraction_min_travel": {
+            "value": "1"
+        },
+        "speed_print": {
+            "maximum_value_warning": "500",
+            "default_value": 150,
+            "value": "max(30, min(250, round((bbl_max_volumetric_speed if bbl_max_volumetric_speed > 0 else 12) / max(0.01, line_width * layer_height))))"
+        },
+        "speed_infill": {
+            "maximum_value_warning": "500",
+            "value": "speed_print"
+        },
+        "speed_wall": {
+            "maximum_value_warning": "500",
+            "value": "speed_print"
+        },
+        "speed_wall_0": {
+            "maximum_value_warning": "500",
+            "value": "min(200, speed_wall)"
+        },
+        "speed_wall_x": {
+            "maximum_value_warning": "500",
+            "value": "speed_wall"
+        },
+        "speed_topbottom": {
+            "maximum_value_warning": "500",
+            "value": "min(200, speed_print)"
+        },
+        "speed_support": {
+            "maximum_value_warning": "500",
+            "value": "speed_print"
+        },
+        "speed_travel": {
+            "maximum_value_warning": "500",
+            "value": "speed_print if magic_spiralize else 500"
+        },
+        "speed_layer_0": {
+            "maximum_value_warning": "500",
+            "value": "50"
+        },
+        "speed_travel_layer_0": {
+            "maximum_value_warning": "500",
+            "value": "150"
+        },
+        "skirt_brim_speed": {
+            "maximum_value_warning": "500",
+            "value": "speed_layer_0"
+        },
+        "acceleration_enabled": {
+            "default_value": true
+        },
+        "acceleration_print": {
+            "maximum_value_warning": "20000",
+            "default_value": 10000
+        },
+        "acceleration_wall": {
+            "maximum_value_warning": "20000",
+            "value": "acceleration_print"
+        },
+        "acceleration_wall_0": {
+            "maximum_value_warning": "20000",
+            "value": "5000"
+        },
+        "acceleration_topbottom": {
+            "maximum_value_warning": "20000",
+            "value": "2000"
+        },
+        "acceleration_travel": {
+            "maximum_value_warning": "20000",
+            "value": "acceleration_print if magic_spiralize else 10000"
+        },
+        "acceleration_layer_0": {
+            "maximum_value_warning": "20000",
+            "value": "500"
+        },
+        "acceleration_travel_layer_0": {
+            "maximum_value_warning": "20000",
+            "value": "500"
+        },
+        "jerk_enabled": {
+            "default_value": false
+        },
+        "adhesion_type": {
+            "default_value": "skirt"
+        },
+        "infill_sparse_density": {
+            "default_value": 15
+        },
+        "cool_min_layer_time": {
+            "default_value": 4
+        }
+    }
+}

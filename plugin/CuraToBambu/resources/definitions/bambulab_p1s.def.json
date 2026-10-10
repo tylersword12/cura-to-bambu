@@ -1,0 +1,18 @@
+{
+    "version": 2,
+    "name": "Bambu Lab P1S",
+    "inherits": "bambulab_base",
+    "metadata": {
+        "visible": true,
+        "author": "Cura-to-Bambu plugin (unofficial)",
+        "manufacturer": "Bambu Lab",
+        "bbl_printer_id": "bambulab_p1s",
+        "bbl_model_id": "C12",
+        "quality_definition": "bambulab_base"
+    },
+    "overrides": {
+        "machine_name": {
+            "default_value": "Bambu Lab P1S"
+        }
+    }
+}

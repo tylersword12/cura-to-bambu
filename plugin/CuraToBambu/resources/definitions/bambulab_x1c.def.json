@@ -1,0 +1,18 @@
+{
+    "version": 2,
+    "name": "Bambu Lab X1 Carbon",
+    "inherits": "bambulab_base",
+    "metadata": {
+        "visible": true,
+        "author": "Cura-to-Bambu plugin (unofficial)",
+        "manufacturer": "Bambu Lab",
+        "bbl_printer_id": "bambulab_x1c",
+        "bbl_model_id": "BL-P001",
+        "quality_definition": "bambulab_base"
+    },
+    "overrides": {
+        "machine_name": {
+            "default_value": "Bambu Lab X1 Carbon"
+        }
+    }
+}

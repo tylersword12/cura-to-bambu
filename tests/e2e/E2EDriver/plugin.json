@@ -1,0 +1,9 @@
+{
+    "name": "E2E Driver (test only)",
+    "author": "test",
+    "version": "0.0.1",
+    "description": "Drives Cura for automated tests.",
+    "api": 8,
+    "supported_sdk_versions": ["8.0.0"],
+    "i18n-catalog": "cura"
+}

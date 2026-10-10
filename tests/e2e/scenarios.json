@@ -1,0 +1,45 @@
+[
+ {
+  "name": "p1s_pla_standard",
+  "definition": "bambulab_p1s",
+  "material": "generic_pla_175",
+  "test_device": true
+ },
+ {
+  "name": "x1c_petg_06",
+  "definition": "bambulab_x1c",
+  "material": "generic_petg_175",
+  "nozzle": 0.6,
+  "global": {
+   "bbl_plate_type": "engineering_plate",
+   "support_enable": true
+  }
+ },
+ {
+  "name": "x1e_abs_fine",
+  "definition": "bambulab_x1e",
+  "material": "generic_abs_175",
+  "global": {
+   "layer_height": 0.12,
+   "build_volume_temperature": 50
+  }
+ },
+ {
+  "name": "p1p_tpu_brim",
+  "definition": "bambulab_p1p",
+  "material": "generic_tpu_175",
+  "global": {
+   "adhesion_type": "brim",
+   "bbl_timelapse": false
+  }
+ },
+ {
+  "name": "p1s_pla_fast21",
+  "definition": "bambulab_p1s",
+  "material": "generic_pla_175",
+  "global": {
+   "bbl_max_volumetric_speed": 21,
+   "bbl_plate_type": "cool_plate"
+  }
+ }
+]

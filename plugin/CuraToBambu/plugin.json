@@ -1,0 +1,9 @@
+{
+    "name": "Cura to Bambu Lab (unofficial)",
+    "author": "Cura-to-Bambu",
+    "version": "0.1.1",
+    "description": "Adds Bambu Lab P1S, P1P, X1 Carbon and X1E printers to Cura, writes Bambu .gcode.3mf print files with Bambu's own start/end G-code, and sends them to the printer through Bambu Connect.",
+    "api": 8,
+    "supported_sdk_versions": ["8.0.0"],
+    "i18n-catalog": "cura"
+}
